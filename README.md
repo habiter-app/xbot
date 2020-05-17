@@ -12,7 +12,7 @@ There are some solution there around multiplatform bot, but different messaging 
 
 To generate python code (statically) you can
 
-```
+```bash
 xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
 ```
 
@@ -24,7 +24,7 @@ The main principle around xbot is **the generated code will always run**, even i
 
 xbot is built around the concept that different bot APIs wrappers pretty much works the same way just with different syntax. Here is an example with [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)(A) and [discord.py](https://github.com/Rapptz/discord.py)(B).
 
-```
+```python
 # python-telegram-bot, (A)
 
 def add(update, context):
@@ -37,7 +37,7 @@ def add(update, context):
         update.message.reply_text('Usage: /add <left> <right>')
 ```
 
-```
+```python
 # discord.py, (B)
 
 @bot.command()
@@ -55,7 +55,7 @@ There is a bunch of differences with the two wrappers, but they practically do t
 
 So how can we effectively translate from (A) to (B)? We can use a [Jinja2 template](https://jinja.palletsprojects.com/en/2.11.x/templates/#call) to generate (B)
 
-```
+```python
 # discord.py, (B)
 # xbot TEMPLATE
 
@@ -69,7 +69,7 @@ So how can we effectively translate from (A) to (B)? We can use a [Jinja2 templa
 ```
 
 We this basic template we can generate the original (B) code with just this call
-```
+```python
 # discord.by, (B)
 # xbot CALL
 
