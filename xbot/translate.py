@@ -18,14 +18,13 @@ class FunctionTemplateParams:
     reply: str 
     function_docstring: str = ''
 
-def parse_source_code(filename, library=None):
+def parse_source_code(
+        filename: str, 
+        library=None
+        ) -> FunctionTemplateParams:
+    """
+    """
     logging.info("parse_source_code..")
-    pass
-
-def generate_destination_code(params, output_file):
-    logging.info("generate_destination_code..")
-
-    template = "./xbot/templates/discord.py/reply.py"
     params = FunctionTemplateParams(
             function_name = "add", 
             function_arguments = ["left", "right"],
@@ -33,14 +32,33 @@ def generate_destination_code(params, output_file):
             body = 'result = int(left) + int(right)',
             reply = 'result',
             )
+    return params
 
+def generate_destination_code(
+        params: FunctionTemplateParams, 
+        output_file: str,
+        output_library: xbot.constants.LIBRARIES
+        ):
+    """
+    """
+    logging.info("generate_destination_code..")
+
+    template = xbot.utils.template_filename(
+            output_library,
+            xbot.constants.TEMPLATES.REPLY
+            )
     translated_code = xbot.utils.render_jinja_template(template, asdict(params))
 
     logging.info("\n\n"+translated_code)
     with open(output_file, "w") as f:
         f.write(translated_code)
 
-def translate(sourcecode_filename, output_file=None):
+def translate(
+        sourcecode_filename, 
+        input_library=xbot.constants.LIBRARIES.PYTHON_TELEGRAM_BOT,
+        output_file=None,
+        output_library=xbot.constants.LIBRARIES.DISCORD_PY
+        ):
     """
     """
     logging.info("translate {}..".format(sourcecode_filename))
@@ -48,4 +66,8 @@ def translate(sourcecode_filename, output_file=None):
 
     if output_file is None or output_file == "":
         output_file = xbot.constants.DEFAULT_OUTPUT_FILENAME
-    generate_destination_code(params, output_file)
+    generate_destination_code(
+            params, 
+            output_file,
+            output_library
+            )
