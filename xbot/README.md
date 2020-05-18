@@ -7,3 +7,8 @@ This is internal docs for xbot
 - https://jinja.palletsprojects.com/en/2.11.x/templates/#call
 - https://docs.python.org/3/library/ast.html#ast.parse
 - https://vpyast.appspot.com/
+
+To upload the package to pypi
+```
+python3 -m twine upload --repository testpypi dist/*
+```

@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="xbot", # Replace with your own username
-    version="0.0.1",
+    name="x-bot", 
+    version="0.0.2",
     author="Alessandro Solbiati",
     author_email="alessandro.solbiati@gmail.com",
     description="code generator for messaging bot in multiple platforms ",
