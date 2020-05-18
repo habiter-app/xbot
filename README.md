@@ -1,5 +1,6 @@
 # xbot
 [![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
 
@@ -27,11 +28,12 @@ You can see an example of a real translation in the `tests` folder where we tran
 
 To view it your self you can just run the tests to assert that the generated code (inside `gen__xbot.py`) is identical to the expected code.
 
+
 ```
 python -m pytest tests
 ```
 
-If this button ([![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)) is green, it means the test is passing.
+[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot) If the button is green, it means the test above is passing.
 
 
 
