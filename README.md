@@ -1,9 +1,11 @@
 # xbot
+[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
--
-Problem: I built my bot in X (e.g. Telegram) and now I want to have it also in Y (Discord) and Z (Slack).
-xbot solution: xbot takes your code for X and generates automatically code for Y and Z, afterward you can still test it and edit it as you wish. xbot does only the boilerplate part, is up to you what you do with it.
+
+**Problem**: I built my bot in X (e.g. Telegram) and now I want to have it also in Y (Discord) and Z (Slack).
+**Solution**: xbot takes your code for X and generates automatically code for Y and Z, afterward you can still test it and edit it as you wish. xbot does only the boilerplate part, is up to you what you do with it.
 
 **Why not having a multiplatform bot?**
 There are some solution there around multiplatform bot, but different messaging platform offer different features, e.g. in Telegram you can have rich bot UI and in Discord you can display a "Bot is typing" message. More then that you might want to have different deployment strategies for different bot, so with we don't want to force any opinion around what you do with your code.
@@ -13,12 +15,27 @@ There are some solution there around multiplatform bot, but different messaging 
 To generate python code (statically) you can
 
 ```bash
-xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
+python -m xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
 ```
 
 where `python-telegram-bot` is the wrapper you are using to write your Telegram bot.
 
 The main principle around xbot is **the generated code will always run**, even if to do that we need to deprecate some features in the migration.
+
+## Example
+
+You can see an example of a real translation in the `tests` folder where we translate from an [orginal_code.py](https://github.com/SolbiatiAlessandro/xbot/blob/master/tests/original_code.py) (that runs in Telegram) to an [translated_code__expected.py](https://github.com/SolbiatiAlessandro/xbot/blob/master/tests/translated_code__expected.py) (that runs in Discord).
+
+To view it your self you can just run the tests to assert that the generated code (inside `gen__xbot.py`) is identical to the expected code.
+
+
+```
+python -m pytest tests
+```
+
+[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot) If the button is green, it means the test above is passing.
+
+
 
 ## How does it work
 
@@ -71,10 +88,10 @@ async def {{function_name}}(ctx):
     """
     {{function_docstring}}
     """
-    {{ body }}
+    {{ body.replace('update.message.text', 'ctx.message.content')}}
 ```
 
-This basic template we can easily generate the original (B) code, where in {{body}} we are replacing stuff like `update.message.text` to `ctx.message.content`.
+This basic template we can easily generate the original (B) code.
 
 Given that template we just need to parse (A) (we can use it [walking the AST](https://docs.python.org/3/library/ast.html#ast.parse) for example) to get the values like function name, arguments and body and then just pass them to (B).
 
