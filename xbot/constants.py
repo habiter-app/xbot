@@ -1,0 +1,1 @@
+DEFAULT_OUTPUT_FILENAME = "gen__xbot.py"

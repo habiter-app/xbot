@@ -59,23 +59,19 @@ So how can we effectively translate from (A) to (B)? We can use a [Jinja2 templa
 # discord.py, (B)
 # xbot TEMPLATE
 
-{% macro discord_bot_function(name, arguments, reply='result', docstring=None) %}
-  @bot.command()
-  async def {{name}}(ctx, {{arguments}}:
-	  """{{docstring}}"""
-	  {{ caller () }}
-	  await ctx.send({{ reply }})
-{% endmacro %}
+@bot.command()
+async def {{function_name}}(ctx, {{", ".join(function_arguments)}}):
+    """{{function_docstring}}"""
+    {{ body }}
+    await ctx.send({{ reply }})
 ```
 
-We this basic template we can generate the original (B) code with just this call
-```python
-# discord.by, (B)
-# xbot CALL
-
-{% call discord_bot_function('add', ['left', 'right'], docstring='Adds two numbers together') %}
-    result = int(left) + int(right)
-{% endcall %}
-```
+We this basic template we can easily generate the original (B) code.
 
 Given that template we just need to parse (A) (we can use it [walking the AST](https://docs.python.org/3/library/ast.html#ast.parse) for example) to get the values like function name, arguments and body and then just pass them to (B).
+
+## Contributing
+
+To add a new translation platform this is the checklist
+
+- add template `xbot/templates/WRAPPER_NAME/reply.py`
