@@ -18,7 +18,7 @@ class LIBRARIES(enum.Enum):
     """
 
     # https://github.com/Rapptz/discord.py
-    DISCORD_PY = 'discord.py'
+    DISCORD_PY = 'discord'
 
     # https://github.com/python-telegram-bot/python-telegram-bot
-    PYTHON_TELEGRAM_BOT = 'python-telegram-bot'
+    PYTHON_TELEGRAM_BOT = 'telegram'

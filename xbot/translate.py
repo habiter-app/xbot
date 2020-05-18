@@ -1,41 +1,31 @@
 """core translate logic"""
+import ast
 import logging
-from dataclasses import dataclass, asdict
-from typing import List
+from  dataclasses import asdict
 
 import xbot.constants
 import xbot.utils
+import xbot.templates
 
-@dataclass
-class FunctionTemplateParams:
-    """
-    Standardises which paramters need to be passed
-    to render a 'function' template
-    """
-    function_name: str
-    function_arguments: List[str]
-    body: str 
-    reply: str 
-    function_docstring: str = ''
 
 def parse_source_code(
         filename: str, 
         library=None
-        ) -> FunctionTemplateParams:
+        ) -> xbot.templates.FunctionTemplateParams:
     """
     """
     logging.info("parse_source_code..")
-    params = FunctionTemplateParams(
-            function_name = "add", 
-            function_arguments = ["left", "right"],
-            function_docstring = 'Adds two numbers together.',
-            body = 'result = int(left) + int(right)',
-            reply = 'result',
-            )
+    sourcecode = ""
+    with open(filename, "r") as f:
+        sourcecode = f.read()
+
+    Parser = xbot.utils.get_parser(xbot.constants.LIBRARIES.PYTHON_TELEGRAM_BOT)
+    parser = Parser(sourcecode=sourcecode)
+    params = parser.get_params()
     return params
 
 def generate_destination_code(
-        params: FunctionTemplateParams, 
+        params: xbot.templates.FunctionTemplateParams, 
         output_file: str,
         output_library: xbot.constants.LIBRARIES
         ):
