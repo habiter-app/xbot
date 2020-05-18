@@ -2,7 +2,7 @@
 Logic surrounding templates manipulation
 """
 from dataclasses import dataclass, asdict
-from typing import List
+import enum
 
 @dataclass
 class FunctionTemplateParams:
@@ -11,7 +11,12 @@ class FunctionTemplateParams:
     to render a 'function' template
     """
     function_name: str
-    function_arguments: List[str]
-    body: str 
-    reply: str 
-    function_docstring: str = ''
+    function_body: str 
+
+class MetaDictionary(enum.Enum):
+    """
+    this are the keywork that we map every
+    wrapper to for translationj
+    """
+    RECEIVED_MESSAGE = 'This is the input message string for the bot function'
+    SEND_MESSAGE = 'This is the method to send a message as reply'

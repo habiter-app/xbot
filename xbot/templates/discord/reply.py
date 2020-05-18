@@ -1,5 +1,3 @@
-@bot.command()
-async def {{function_name}}(ctx, {{", ".join(function_arguments)}}):
-    """{{function_docstring}}"""
-    {{ body }}
-    await ctx.send({{ reply }})
+@bot.command(name='{{function_name}}')
+async def {{function_name}}(ctx):
+    {{ function_body }}

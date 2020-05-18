@@ -1,5 +1,6 @@
 import enum
 DEFAULT_OUTPUT_FILENAME = "gen__xbot.py"
+GENERATED_COMMENT = '"""__GENERATED__ cross platform generated function"""'
 
 class TEMPLATES(enum.Enum):
     """
