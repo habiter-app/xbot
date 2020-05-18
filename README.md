@@ -1,4 +1,5 @@
 # xbot
+[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
 -
@@ -13,12 +14,26 @@ There are some solution there around multiplatform bot, but different messaging 
 To generate python code (statically) you can
 
 ```bash
-xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
+python -m xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
 ```
 
 where `python-telegram-bot` is the wrapper you are using to write your Telegram bot.
 
 The main principle around xbot is **the generated code will always run**, even if to do that we need to deprecate some features in the migration.
+
+## Example
+
+You can see an example of a real translation in the `tests` folder where we translate from an [orginal_code.py](https://github.com/SolbiatiAlessandro/xbot/blob/master/tests/original_code.py) (that runs in Telegram) to an [translated_code__expected.py](https://github.com/SolbiatiAlessandro/xbot/blob/master/tests/translated_code__expected.py) (that runs in Discord).
+
+To view it your self you can just run the tests to assert that the generated code (inside `gen__xbot.py`) is identical to the expected code.
+
+```
+python -m pytest tests
+```
+
+If this button ([![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)) is green, it means the test is passing.
+
+
 
 ## How does it work
 
@@ -71,10 +86,10 @@ async def {{function_name}}(ctx):
     """
     {{function_docstring}}
     """
-    {{ body }}
+    {{ body.replace('update.message.text', 'ctx.message.content')}}
 ```
 
-This basic template we can easily generate the original (B) code, where in {{body}} we are replacing stuff like `update.message.text` to `ctx.message.content`.
+This basic template we can easily generate the original (B) code.
 
 Given that template we just need to parse (A) (we can use it [walking the AST](https://docs.python.org/3/library/ast.html#ast.parse) for example) to get the values like function name, arguments and body and then just pass them to (B).
 
