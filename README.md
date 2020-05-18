@@ -1,5 +1,5 @@
 # xbot
-[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)
+[![Build Status](https://travis-ci.com/habiter-app/xbot.svg?branch=master)](https://travis-ci.com/habiter-app/xbot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
@@ -43,7 +43,7 @@ To view it your self you can just run the tests to assert that the generated cod
 python -m pytest tests
 ```
 
-[![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot) If the button is green, it means the test above is passing.
+[![Build Status](https://travis-ci.com/habiter-app/xbot.svg?branch=master)](https://travis-ci.com/habiter-app/xbot) If the button is green, it means the test above is passing.
 
 
 
