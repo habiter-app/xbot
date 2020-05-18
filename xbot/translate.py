@@ -1,6 +1,7 @@
 """core translate logic"""
 import ast
 import logging
+from typing import Iterator
 from  dataclasses import asdict
 
 import xbot.constants
@@ -11,7 +12,7 @@ import xbot.templates
 def parse_source_code(
         filename: str, 
         library=None
-        ) -> xbot.templates.FunctionTemplateParams:
+        ) -> Iterator[xbot.templates.FunctionTemplateParams]:
     """
     """
     logging.info("parse_source_code..")
@@ -21,11 +22,11 @@ def parse_source_code(
 
     Parser = xbot.utils.get_parser(xbot.constants.LIBRARIES.PYTHON_TELEGRAM_BOT)
     parser = Parser(sourcecode=sourcecode)
-    params = parser.get_params()
-    return params
+    bot_functions = parser.parse()
+    return bot_functions
 
 def generate_destination_code(
-        params: xbot.templates.FunctionTemplateParams, 
+        bot_functions: Iterator[xbot.templates.FunctionTemplateParams], 
         output_file: str,
         output_library: xbot.constants.LIBRARIES
         ):
@@ -37,7 +38,12 @@ def generate_destination_code(
             output_library,
             xbot.constants.TEMPLATES.REPLY
             )
-    translated_code = xbot.utils.render_jinja_template(template, asdict(params))
+    translated_functions = map(
+            lambda params: 
+                xbot.utils.render_jinja_template(template, asdict(params)),
+            bot_functions
+            )
+    translated_code = "\n\n".join(translated_functions)
 
     logging.info("\n\n"+translated_code)
     with open(output_file, "w") as f:
