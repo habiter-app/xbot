@@ -31,7 +31,19 @@ class Parser:
 
     def _get_bot_functions(self, ast_module: ast.Module):
         """returns functions from the first level of the AST"""
-        return filter(lambda node: type(node) == ast.FunctionDef, ast_module.body)
+        module_level_functions = filter(
+                lambda node: type(node) == ast.FunctionDef, ast_module.body)
+
+        decorator_list = lambda ast_function: \
+            ast_function.decorator_list \
+            if 'decorator_list' in ast_function._fields else []
+
+        has_xbot_decorator = lambda ast_function: \
+                any(map(lambda ast_decorator: ast_decorator.value.id == 'xbot', 
+                    decorator_list(ast_function)))
+
+        xbot_decorated_functions = filter(has_xbot_decorator, module_level_functions)
+        return xbot_decorated_functions
 
     def _translate_line(self, original_line: str) -> str:
         """replace tokens from self.dictionary when found"""

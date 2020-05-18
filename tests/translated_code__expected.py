@@ -1,3 +1,4 @@
+@xbot.xfunction
 @bot.command(name='add')
 async def add(ctx):
     """__GENERATED__ cross platform generated function"""
@@ -9,6 +10,7 @@ async def add(ctx):
     except (IndexError, ValueError):
         await ctx.send('Usage: /add <left> <right>')
 
+@xbot.xfunction
 @bot.command(name='subtract')
 async def subtract(ctx):
     """__GENERATED__ cross platform generated function"""
@@ -20,6 +22,7 @@ async def subtract(ctx):
     except (IndexError, ValueError):
         await ctx.send('Usage: /subtract <left> <right>')
 
+@xbot.xfunction
 @bot.command(name='echo')
 async def echo(ctx):
     """__GENERATED__ cross platform generated function"""

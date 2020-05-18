@@ -18,15 +18,19 @@ There are some solution there around multiplatform bot, but different messaging 
 
 ## Usage
 
-To generate python code (statically) you can
+Decorate functions you want to translate with
+```python
+@xbot.xfunction
+def my_telegram_bot_function(telegram_arguments):
+```
 
+And then generate translated python code (statically) with
 ```bash
 python -m xbot my_telegram_bot.py --from python-telegram-bot --to discord.py
 ```
+where `python-telegram-bot` is the wrapper you are using to write your Telegram bot, and `discord.py` is the wrapper you are translating to.
 
-where `python-telegram-bot` is the wrapper you are using to write your Telegram bot.
-
-The main principle around xbot is **the generated code will always run**, even if to do that we need to deprecate some features in the migration.
+You will now will have a generated code file at `gen__xbot.py` with the transated runnable code. You are free to do what you want with it!
 
 ## Example
 
@@ -107,4 +111,4 @@ To add a new translation platform this is the checklist
 
 - add a **TEMPLATE** for you library at `xbot/templates/WRAPPER_NAME/reply.py` (to see the full lists of templates and libraries check `xbot/constants.py`)
 - add a **DICTIONARY** in `xbot/parsers/WRAPPER_NAME/dictionary.py` (that maps to the `MetaDictionary` in `xbot/templates.py`)
-- [optional] add a **PARSER** if you want to translate from your platform to another platform in `xbot/parsers/WRAPPER_NAME/parser.py`
+- [optional] add a **PARSER** if you want to translate from your platform to another platform in `xbot/parsers/WRAPPER_NAME/parser.py`. You can pretty much use all the functions inside `xbot/parsers/telegram/parser.py`
