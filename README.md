@@ -2,9 +2,9 @@
 [![Build Status](https://travis-ci.com/SolbiatiAlessandro/xbot.svg?branch=master)](https://travis-ci.com/SolbiatiAlessandro/xbot)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
--
-Problem: I built my bot in X (e.g. Telegram) and now I want to have it also in Y (Discord) and Z (Slack).
-xbot solution: xbot takes your code for X and generates automatically code for Y and Z, afterward you can still test it and edit it as you wish. xbot does only the boilerplate part, is up to you what you do with it.
+
+**Problem**: I built my bot in X (e.g. Telegram) and now I want to have it also in Y (Discord) and Z (Slack).
+**Solution**: xbot takes your code for X and generates automatically code for Y and Z, afterward you can still test it and edit it as you wish. xbot does only the boilerplate part, is up to you what you do with it.
 
 **Why not having a multiplatform bot?**
 There are some solution there around multiplatform bot, but different messaging platform offer different features, e.g. in Telegram you can have rich bot UI and in Discord you can display a "Bot is typing" message. More then that you might want to have different deployment strategies for different bot, so with we don't want to force any opinion around what you do with your code.
