@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     install_requires=[
         'Jinja2',
-        'astunparse'
+        'astunparse',
         'pytest'
         ],
     python_requires='>=3.6',
