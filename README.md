@@ -4,6 +4,12 @@
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
 
+```
+pip install x-bot
+```
+
+## Abstract
+
 **Problem**: I built my bot in X (e.g. Telegram) and now I want to have it also in Y (Discord) and Z (Slack).
 **Solution**: xbot takes your code for X and generates automatically code for Y and Z, afterward you can still test it and edit it as you wish. xbot does only the boilerplate part, is up to you what you do with it.
 
