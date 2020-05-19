@@ -24,4 +24,6 @@ setuptools.setup(
         'pytest'
         ],
     python_requires='>=3.6',
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
 )
