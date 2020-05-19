@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="x-bot", 
-    version="0.0.6",
+    version="0.0.7",
     author="Alessandro Solbiati",
     author_email="alessandro.solbiati@gmail.com",
-    description="code generator for messaging bot in multiple platforms ",
+    description="Code generation tool for transalting messaging bots from one platform to another.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/SolbiatiAlessandro/xbot",
