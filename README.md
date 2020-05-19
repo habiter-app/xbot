@@ -1,6 +1,7 @@
 # xbot
 [![Build Status](https://travis-ci.com/habiter-app/xbot.svg?branch=master)](https://travis-ci.com/habiter-app/xbot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/x-bot.svg)](https://badge.fury.io/py/x-bot)
 
 **xbot** (read cross-bot), is a code generation tool to translate your messaging bot code for other messaging platform.
 
