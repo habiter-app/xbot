@@ -10,9 +10,11 @@ This is internal docs for xbot
 
 ## Deployment
 
-To upload the package to pypi
+To deploy a new package version
+
 ```
-python3 -m twine upload --repository testpypi dist/*
+git tag 1.0
+git push --tag
 ```
 
 The deployment to pypi is integrated in `travis-ci`, checkout `.travis.yml`
@@ -24,18 +26,20 @@ git tag version-number
 git tag version-number -a # to annotate
 ```
 
-The tag is deployed because we use `setuptools-cmg`, check this commit `8410a1d109c35049c4eb7dd675ea7f9da84b604e` for how it was set up.
+If you make a untagged commit `travis` won't deploy
 
-We also push automatically to `origin` all the tags using
-
-(https://stackoverflow.com/questions/5195859/how-do-you-push-a-tag-to-a-remote-repository-using-git)
 ```
-git config --global push.followTags true
+Skipping a deployment with the pypi provider because this is not a tagged commit
 ```
 
-And adding to `.travis.yml`
+The tag is deployed because we use `setuptools-cmg` (check this commit `8410a1d109c35049c4eb7dd675ea7f9da84b604e` for how it was set up) and we added to `.travis.yml`
 
 ```
 on:
     tags: true
+```
+
+To upload manually the package to pypi
+```
+python3 -m twine upload --repository testpypi dist/*
 ```
