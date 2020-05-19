@@ -66,6 +66,7 @@ def translate(
     """
     logging.info("translate {}..".format(sourcecode_filename))
     params = parse_source_code(sourcecode_filename)
+    params = list(params)
 
     if output_file is None or output_file == "":
         output_file = xbot.constants.DEFAULT_OUTPUT_FILENAME
@@ -74,3 +75,6 @@ def translate(
             output_file,
             output_library
             )
+    print("[xbot]SUCCESS: parsed and translated {} functions to {}".format(len(params), output_file))
+    for param in params:
+        print("\t{}".format(param.function_name))
