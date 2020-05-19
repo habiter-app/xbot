@@ -1,6 +1,8 @@
 import enum
+import os
 DEFAULT_OUTPUT_FILENAME = "gen__xbot.py"
 GENERATED_COMMENT = '"""__GENERATED__ cross platform generated function"""'
+XBOT_PATH = absolute_path = os.path.dirname(os.path.abspath(__file__))
 
 class TEMPLATES(enum.Enum):
     """

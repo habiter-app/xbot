@@ -17,7 +17,7 @@ def template_filename(
         library: xbot.constants.LIBRARIES, 
         template: xbot.constants.TEMPLATES
         ) -> str:
-    return os.path.join("xbot", "templates", library.value, template.value)
+    return os.path.join(xbot.constants.XBOT_PATH, "templates", library.value, template.value)
 
 def get_parser(library: xbot.constants.LIBRARIES):
     """
