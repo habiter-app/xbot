@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.7",
     author="Alessandro Solbiati",
     author_email="alessandro.solbiati@gmail.com",
-    description="Code generation tool for transalting messaging bots from one platform to another.",
+    description="Code generation tool for translating messaging bots from one platform to another.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/SolbiatiAlessandro/xbot",
