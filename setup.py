@@ -11,7 +11,7 @@ setuptools.setup(
     description="Code generation tool for translating messaging bots from one platform to another.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/SolbiatiAlessandro/xbot",
+    url="https://github.com/habiter-app/xbot",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
