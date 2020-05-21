@@ -1,4 +1,7 @@
 """e2e translation test"""
+import asyncio
+import pytest
+
 import xbot
 import xbot.__main__
 import xbot.constants
@@ -21,10 +24,19 @@ def test_e2e__telegram_to_discord():
 def example_function(a):
     return a + 1
 
-def test__xfunction():
+@xbot.xfunction
+async def example_async_function(a):
+    await asyncio.sleep(1)
+    return a + 1
+
+@pytest.mark.asyncio
+async def test__xfunction():
     """
     we just want to test that the decorator
     compiles and doesn't break anything
     since is used only for parsing
     """
-    assert 2 == example_function(1)
+    assert example_function(1) == 2
+    assert asyncio.iscoroutinefunction(example_async_function)
+    temp = await example_async_function(1)
+    assert temp == 2
