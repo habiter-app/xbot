@@ -1,7 +1,8 @@
 """
 Logic surrounding templates manipulation
 """
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
+from typing import Iterator, List
 import enum
 
 @dataclass
@@ -12,6 +13,11 @@ class FunctionTemplateParams:
     """
     function_name: str
     function_body: str 
+
+    # functions usually have "bot context" arguments like
+    # context, update, or ctx. We support additional custom arguments
+    # usually for helper functions in the translation
+    function_additional_args: List[str]
 
 class MetaDictionary(enum.Enum):
     """

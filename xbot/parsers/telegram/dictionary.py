@@ -3,6 +3,8 @@ Dictionary to map telegram code to MetaDictionary
 """
 from xbot.templates import MetaDictionary
 
+DEFAULT_FUNCTION_ARGS = ['update', 'context']
+
 library_to_meta = {
     'update.message.text': MetaDictionary.RECEIVED_MESSAGE,
     'update.message.reply_text': MetaDictionary.SEND_MESSAGE,

@@ -41,7 +41,7 @@ To view it your self you can just run the tests to assert that the generated cod
 
 
 ```
-python -m pytest tests
+python -m pytest tests -vv
 ```
 
 [![Build Status](https://travis-ci.com/habiter-app/xbot.svg?branch=master)](https://travis-ci.com/habiter-app/xbot) If the button is green, it means the test above is passing.

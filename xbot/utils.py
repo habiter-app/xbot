@@ -34,10 +34,12 @@ def get_parser(library: xbot.constants.LIBRARIES):
 def make_dictionary(
         from_library: xbot.constants.LIBRARIES,
         to_library: xbot.constants.LIBRARIES
-        ):
+        ) -> (dict, list):
     """
     uses MetaDictionary to dinamically construct a 1:1 
     mapping for the two libraries
+
+    returns (Dictionary, DEFAULT_FUNCTION_ARGS)
     """
     logging.info("make_dictionary..")
     from_library_path = ".".join(
@@ -56,5 +58,5 @@ def make_dictionary(
             }
 
     logging.info(from_library_to_library)
-    return from_library_to_library
+    return from_library_to_library, from_library_module.DEFAULT_FUNCTION_ARGS
 

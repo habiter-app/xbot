@@ -1,7 +1,7 @@
 import xbot.templates
 import xbot.constants
 import logging
-from typing import Iterator
+from typing import Iterator, List
 import ast
 import astunparse
 
@@ -20,6 +20,7 @@ class Parser:
             self, 
             sourcecode: str, 
             dictionary: dict,
+            DEFAULT_FUNCTION_ARGS: List[str] = [],
             output_indentation_level: int = 1,
             output_indentation_string: str = "    "
             ):
@@ -27,6 +28,7 @@ class Parser:
         self.dictionary = dictionary
         self.indentation_level = output_indentation_level
         self.indentation_string = output_indentation_string
+        self.DEFAULT_FUNCTION_ARGS = DEFAULT_FUNCTION_ARGS
         self.parse()
 
     def _get_bot_functions(self, ast_module: ast.Module):
@@ -62,11 +64,28 @@ class Parser:
         translated_code = map(lambda line: self._translate_line(line), original_code)
         return xbot.constants.GENERATED_COMMENT + "\n".join(translated_code)
 
-    def _get_function_params(self, ast_function: ast.FunctionDef)  -> xbot.templates.FunctionTemplateParams:
+    def _get_function_additional_args(
+            self, ast_function: ast.FunctionDef) -> List[str]:
+        """get function arguments not in self.DEFAULT_FUNCTION_ARGS"""
+        function_args = map(lambda ast_arg: ast_arg.arg,
+                ast_function.args.args)
+
+        additional_function_args = filter(
+                lambda arg: arg not in self.DEFAULT_FUNCTION_ARGS,
+                function_args
+                )
+        return list(additional_function_args)
+
+    def _get_function_params(
+            self, 
+            ast_function: ast.FunctionDef
+            )  -> xbot.templates.FunctionTemplateParams:
         """extracts FunctionTemplateParams for an ast.FunctionDef"""
         return xbot.templates.FunctionTemplateParams(
                 function_name = ast_function.name,
-                function_body = self._get_function_body(ast_function)
+                function_body = self._get_function_body(ast_function),
+                function_additional_args = self._get_function_additional_args(
+                    ast_function)
                 )
 
     def parse(self) -> Iterator[xbot.templates.FunctionTemplateParams]:

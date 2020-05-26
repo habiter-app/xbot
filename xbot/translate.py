@@ -23,9 +23,9 @@ def parse_source_code(
         sourcecode = f.read()
 
     Parser = xbot.utils.get_parser(from_library)
-    dictionary = xbot.utils.make_dictionary(from_library, to_library)
+    dictionary, DEFAULT_FUNCTION_ARGS = xbot.utils.make_dictionary(from_library, to_library)
 
-    parser = Parser(sourcecode, dictionary)
+    parser = Parser(sourcecode, dictionary, DEFAULT_FUNCTION_ARGS=DEFAULT_FUNCTION_ARGS)
     translated_functions = parser.parse()
     return translated_functions
 

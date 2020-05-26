@@ -3,6 +3,8 @@ Dictionary to map discord code to MetaDictionary
 """
 from xbot.templates import MetaDictionary
 
+DEFAULT_FUNCTION_ARGS = ['ctx']
+
 library_to_meta = {
     'ctx.message.content': MetaDictionary.RECEIVED_MESSAGE,
     'await ctx.send': MetaDictionary.SEND_MESSAGE,

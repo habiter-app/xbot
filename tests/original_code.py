@@ -25,5 +25,14 @@ def subtract(update, context):
 def echo(update, context):
     update.message.reply_text(update.message.text)
 
+@xbot.xfunction
+def echo_additional_arguments(
+        update, 
+        context, 
+        custom_argument_1, 
+        custom_argument_2
+        ):
+    update.message.reply_text(update.message.text)
+
 def echo_dont_translate(update, context):
     update.message.reply_text(update.message.text)

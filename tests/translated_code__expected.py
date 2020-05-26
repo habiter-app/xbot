@@ -27,3 +27,9 @@ async def subtract(ctx):
 async def echo(ctx):
     """__GENERATED__ cross platform generated function"""
     await ctx.send(ctx.message.content)
+
+@xbot.xfunction
+@bot.command(name='echo_additional_arguments')
+async def echo_additional_arguments(ctx, custom_argument_1, custom_argument_2):
+    """__GENERATED__ cross platform generated function"""
+    await ctx.send(ctx.message.content)
