@@ -25,7 +25,7 @@ setuptools-scm==3.5.0
 six==1.14.0
 tqdm==4.46.0
 twine==3.1.1
-urllib3==1.25.9
+urllib3==1.26.5
 wcwidth==0.1.9
 webencodings==0.5.1
 -e git+https://github.com/habiter-app/xbot@f9a1ca869f805862048fb80e35c4872e55226a86#egg=x_bot
